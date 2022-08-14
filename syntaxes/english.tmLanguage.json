@@ -1,0 +1,244 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "English",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#parentheticals"
+    },
+    {
+      "include": "#url"
+    },
+    {
+      "include": "#punctuation"
+    },
+    {
+      "include": "#properNouns"
+    },
+    {
+      "include": "#capitalizedWords"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#acronymsAndInitialisms"
+    }
+  ],
+  "repository": {
+    "punctuation": {
+      "patterns": [
+        {
+          "match": "[.]",
+          "name": "keyword.dot"
+        },
+        {
+          "match": ",",
+          "name": "keyword.control.comma"
+        },
+        {
+          "match": "[:]",
+          "name": "keyword.other.colon"
+        },
+        {
+          "match": "[;]",
+          "name": "keyword.operator.semicolon"
+        },
+        {
+          "match": "[’']",
+          "name": "keyword.other.apostrophe"
+        },
+        {
+          "match": "[¿?]",
+          "name": "constant.other.symbol.question-mark"
+        },
+        {
+          "match": "[¡!]",
+          "name": "constant.other.color.exclamation-mark"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "(\\d+([.,]\\d+)?)%?",
+          "name": "constant.numeric"
+        }
+      ]
+    },
+    "url": {
+      "patterns": [
+        {
+          "name": "meta.link",
+          "match": "(?i)((https?:\\/\\/www)|(www))(([.]\\w+)+(@\\w+))?([.]\\w+)+(\\/[=_\\-?\\w]+)*\\/?",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "match": "[.@/=]",
+                  "name": "keyword.net.punctuation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "begin": "(/\\*)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.comment"
+            }
+          },
+          "end": "(\\*/)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.comment"
+            }
+          },
+          "name": "comment"
+        },
+        {
+          "name": "invalid.illegal.todo",
+          "begin": "TODO",
+          "beginCaptures": {
+            "0": {
+              "name": "keyword.other.special-method.todo"
+            }
+          },
+          "end": "\\\n"
+        }
+      ]
+    },
+    "properNouns": {
+      "patterns": [
+        {
+          "match": "(?<!^|^\\W|\\W\\s|\\S)\\b[A-Z][a-z]+\\b",
+          "name": "constant.proper-noun"
+        }
+      ]
+    },
+    "capitalizedWords": {
+      "patterns": [
+        {
+          "match": "\\b[A-Z][a-z]+\\b",
+          "name": "variable.Capitalized"
+        }
+      ]
+    },
+    "parentheticals": {
+      "patterns": [
+        {
+          "name": "support.class.function.any-method.in-parentheses",
+          "begin": "\\(",
+          "beginCaptures": {
+            "name": "punctuation.array.parentheses"
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "name": "punctuation.array.parentheses"
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "variable.parameter.function.in-braces",
+          "begin": "\\{",
+          "beginCaptures": {
+            "name": "punctuation.array.in-braces"
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "name": "punctuation.array.in-braces"
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "comment.in-brakets",
+          "begin": "\\[",
+          "beginCaptures": {
+            "name": "punctuation.definition.comment.parentheses"
+          },
+          "end": "\\]",
+          "endCaptures": {
+            "name": "punctuation.definition.comment.parentheses"
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "string.in-quotes",
+          "begin": "[\"“”«»]",
+          "beginCaptures": {
+            "name": "punctuation.definition.string"
+          },
+          "end": "[\"“”«»\\n]",
+          "endCaptures": {
+            "name": "punctuation.definition.string"
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "begin": "[`´‘]",
+          "beginCaptures": {
+            "name": "punctuation.definition.string.regexp"
+          },
+          "end": "[`´’\\n]",
+          "endCaptures": {
+            "name": "punctuation.definition.string.regexp"
+          },
+          "name": ".string.regexp.in-single-quotes",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "match": "(?i)\\b(after|although|and|as far as|how|as if|as long as|as soon as|as though|as well as|because|before|both|but|either|even|if|even though|how|however|if|if only|in case|in order (that|to)|in spite of|in which|neither|nevertheless|nor|now|on the other hand|once|only|or|rather than|since|so|that|though|till|unless|until|when|whenever|where|whereas|wherever|whether|whether or not|while|yet)\\b",
+          "name": "support.class.conjunction"
+        },
+        {
+          "match": "(?i)\\b(aboard|about|above|across|after|against|along|amid|among|anti|around|as|at|before|behind|below|beneath|beside|besides|between|beyond|by|concerning|considering|despite|down|during|except|excepting|excluding|following|for|from|in|inside|into|like|near|of|off|on|onto|outside|over|past|per|regarding|than|through|to|toward|towards|under|underneath|unlike|until|up|upon|versus|via|with|within|without)\\b",
+          "name": "comment.preposition"
+        },
+        {
+          "match": "(?i)\\b(i|you|he|she|it|we|they)\\b",
+          "name": "entity.name.type.pronoun.subject"
+        },
+        {
+          "match": "(?i)\\b(me|you|him|her|it|us|them)\\b",
+          "name": "entity.name.type.pronoun.object"
+        }
+      ]
+    },
+    "acronymsAndInitialisms": {
+      "patterns": [
+        {
+          "match": "\\b(([A-Z][.]?){2,})\\b",
+          "name": "constant.acronym"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.natural"
+}

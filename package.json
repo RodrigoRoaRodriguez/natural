@@ -1,0 +1,25 @@
+{
+  "name": "natural",
+  "displayName": "natural-language-highlighting",
+  "description": "Syntax highlighting is awesome, so why not highlight natural language?",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "natural",
+      "aliases": ["Natural Language", "natural"],
+      "extensions": [".txt"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "natural",
+      "scopeName": "source.natural",
+      "path": "./syntaxes/english.tmLanguage.json"
+    }]
+  }
+}
